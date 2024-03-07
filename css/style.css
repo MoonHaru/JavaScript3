@@ -1,0 +1,48 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+body{
+    background: #f9b2cd;
+}
+img{
+    width: 250px;
+}
+svg{
+    width: 40px;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+header .icon-cart{
+    position: relative;
+}
+header .icon-cart span{
+    display: flex;
+    width: 20px;
+    height: 31px;
+    background-color: red;
+    justify-self: center;
+    align-items: center;
+    color: #fff;
+    border-radius: 50%;
+    padding-left: 25%;
+    position: absolute;
+    top: 50%;
+}
+header .h11 {
+    display: flex;
+}
+main{
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 100;
+  font-style: italic;
+}
+main .content{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);   
+    gap: 20px;
+}
