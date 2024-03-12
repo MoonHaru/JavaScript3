@@ -1,43 +1,114 @@
 //Arreglo de datos principal
 let products = [
-    { nombre: 'Whisky Escocés', marca: 'Johnnie Walker', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 15 },
-    { nombre: 'Vodka', marca: 'Absolut', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 16950, cantidad: 20 },
-    { nombre: 'Vino Tinto', marca: 'Concha y Toro', categoria: 'Vino', volumen: '750 ml', gradoAlcoholico: 13, precio: 7500, cantidad: 30 },
-    { nombre: 'Cerveza IPA', marca: 'Stone Brewing', categoria: 'Cerveza', volumen: '355 ml', gradoAlcoholico: 6.9, precio: 5000, cantidad: 50 },
-    { nombre: 'Ron', marca: 'Havana Club', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 12000, cantidad: 25 },
-    { nombre: 'Ginebra', marca: 'Bombay Sapphire', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 47, precio: 17000, cantidad: 18 },
-    { nombre: 'Tequila', marca: 'Patrón', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 22 },
-    { nombre: 'Champán', marca: 'Moët & Chandon', categoria: 'Vino Espumoso', volumen: '750 ml', gradoAlcoholico: 12, precio: 20000, cantidad: 12 },
-    { nombre: 'Sidra', marca: 'Strongbow', categoria: 'Cerveza de Sidra', volumen: '500 ml', gradoAlcoholico: 5, precio: 5000, cantidad: 40 },
-    { nombre: 'Licor de Café', marca: 'Kahlúa', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 20, precio: 18000, cantidad: 15 }
+    { id:1 ,nombre: 'Whisky Escocés', marca: 'Johnnie Walker', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 15, imagen: "Img/JWWH.png" },
+    { id:2 ,nombre: 'Vodka', marca: 'Absolut', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 16950, cantidad: 20, imagen:"Img/VAO.png" },
+    { id:3 ,nombre: 'Vino Tinto', marca: 'Concha y Toro', categoria: 'Vino', volumen: '750 ml', gradoAlcoholico: 13, precio: 7500, cantidad: 30, imagen:"Img/VCYTR.png" },
+    { id:4 ,nombre: 'Cerveza IPA', marca: 'Stone Brewing', categoria: 'Cerveza', volumen: '355 ml', gradoAlcoholico: 6.9, precio: 5000, cantidad: 50, imagen:"Img/SBCI.png" },
+    { id:5 ,nombre: 'Ron', marca: 'Havana Club', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 12000, cantidad: 25, imagen: "Img/RHC.png"},
+    { id:6 ,nombre: 'Ginebra', marca: 'Bombay Sapphire', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 47, precio: 17000, cantidad: 18, imagen:"Img/GBS.png" },
+    { id:7 ,nombre: 'Tequila', marca: 'Patrón', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 22, imagen:"Img/TQS.png" },
+    { id:8 ,nombre: 'Champán', marca: 'Moët & Chandon', categoria: 'Vino Espumoso', volumen: '750 ml', gradoAlcoholico: 12, precio: 20000, cantidad: 12, imagen:"Img/MCC.png" },
+    { id:9 ,nombre: 'Sidra', marca: 'Strongbow', categoria: 'Cerveza de Sidra', volumen: '500 ml', gradoAlcoholico: 5, precio: 5000, cantidad: 40, imagen:"Img/SSBA.png" },
+    { id:10 ,nombre: 'Licor de Café', marca: 'Kahlúa', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 20, precio: 18000, cantidad: 15, imagen:"Img/LCK.png" }
 ];
+
 
 function initComps() {
   const cont = document.getElementById("content");
   cont.innerHTML = "";
   products.forEach((sProduct) => {
-    const div = document.createElement("div");
-    div.className = "productShow"
-    const markName = document.createElement("h3");
-    const butt = document.createElement("button");
-    const nL = document.createElement("br");
-    const icon = document.createElement('img');
-    icon.innerHTML = '<img src="Img/1948-Johnnie-Walker-Red-1-lt.jpg" alt="">';
-    markName.innerText = sProduct.nombre + " " + sProduct.marca;
-    div.appendChild(markName);
-    div.appendChild(nL);
-    div.appendChild(icon);
-    butt.addEventListener("click", () => {
-      console.log("funciona");
-    });
-    butt.innerText = "Agregar al carro";
-    div.appendChild(nL);
-    div.appendChild(butt);
-    console.log(div);
-
+    const div = document.createElement('div');
+    div.className = 'producto';
+    div.innerHTML = `
+    <div class="productoDesc">
+        <h5>${sProduct.nombre} ${sProduct.marca}</h5>
+        <img src="${sProduct.imagen}" onclick="display(${sProduct.id})">
+        <h5>Volumen = ${sProduct.volumen}</h5>
+        <h5>Precio(IVA incluido) = ${sProduct.precio}</h5>
+        <h5>Stock = ${sProduct.cantidad}</h5>
+    `
     cont.appendChild(div);
+  });
+
+  const end = document.getElementById('checkoutbutt');
+  end.addEventListener('click', () =>{
+    out();
+  })
+}
+
+function display(id){
+    const sProduct = products.find(p => p.id == id);
+    const clean =  document.getElementById("content");
+    clean.innerHTML = "";
+    const cont = document.getElementById("showcase");
+    cont.innerHTML = "";
+    const div = document.createElement('div');
+    div.className = 'productoShowcase';
+    div.innerHTML = `
+    <div class="productoDesc">
+        <h5 class = "proTitle" id = "pName">${sProduct.nombre} ${sProduct.marca}</h5>
+        <img id="pImg" src="${sProduct.imagen}" onclick="display(${sProduct.id})">
+        <h5 class = "proDesc" id="pGrade">Grado alcoholico = ${sProduct.gradoAlcoholico}</h5>
+        <h5 class = "proDesc" id="pVolu">Volumen = ${sProduct.volumen}</h5>
+        <h5 class = "proDesc" id="pPrice">Precio(IVA incluido) = ${sProduct.precio}</h5>
+        <h5 class = "proDesc" id="pStock">Stock = ${sProduct.cantidad}</h5>
+        <button id="butt${sProduct.id}">Agregar al carrito</button> 
+        <input type="number" id="cantidadIng" placeholder="">
+    `
+    cont.appendChild(div);
+
+    const boton = document.getElementById(`butt${sProduct.id}`);
+
+    boton.addEventListener('click', ()=>{
+        const cant = document.getElementById("cantidadIng").value;
+        const cheky =  cant > 0 ? true : false
+        if(cheky){
+            pushCart(sProduct.id,cant,sProduct.precio);
+            cont.innerHTML = "";
+            clean.innerHTML = "";
+            initComps();
+        }else{
+            sweety("Ingrese una cantidad valida",false);
+        }
+
+    })
+
+
+}
+
+function tosty(stri){
+    Toastify({
+        text: stri,
+        style: {
+          background: "linear-gradient(to right, yellow, orange)",
+          color: "#000"
+        }
+      }).showToast();
+    
+}
+function initShopcart() {
+  const carticon = document.querySelector(".icon-cart");
+  const body = document.querySelector("body");
+  carticon.addEventListener("click", () => {
+    body.classList.toggle("showCart");
+  });
+
+  const closeb = document.querySelector(".Close");
+  closeb.addEventListener("click", () => {
+    body.classList.toggle("showCart");
   });
 }
 
+function sweety(str,check){
+    if(!check){
+        Swal.fire({
+            text: str,
+            icon: "warning"
+          });
+    }
+}
 
 initComps();
+initShopcart();
+
+

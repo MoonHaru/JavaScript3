@@ -1,9 +1,28 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@100..900&family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+button{
+    background-color: rgb(255, 255, 255); /* Green */
+    border: none;
+    color: #a10aec;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+}
 
 body{
     background: #f9b2cd;
+}
+
+body.showCart .cartTab{
+    inset: 0 0 0 auto;
+}
+
+
+body.showCart main{
+    transition: transform .5s;
 }
 img{
     width: 250px;
@@ -38,11 +57,138 @@ header .h11 {
 }
 main{
   font-family: "Montserrat Alternates", sans-serif;
-  font-weight: 100;
+  font-weight: 900;
   font-style: italic;
 }
-main .content{
+main #checkpage{
+    position: fixed;
+    align-self: center;
+    inset: 50% 50% 50% 50%;
+}
+main #checkpage span{
+    display: inline;
+    
+}
+main #content{
     display: grid;
-    grid-template-columns: repeat(4,1fr);   
-    gap: 20px;
+    grid-template-columns: repeat(5,1fr);   
+    gap: 0px;
+}
+main section .producto{
+text-align: left;
+line-height: 0px;
+}
+
+main #showcase{
+    align-self: center;
+    padding-left: 10px;
+}
+main #showcase #pImg{
+    width: 350px;
+}
+main #showcase #pVolu{
+    position: absolute;
+    padding-left: 400px;
+    margin-top: -300px;
+    font-size: 1.3em;
+}
+main #showcase #pPrice{
+    position: absolute;
+    padding-left: 400px;
+    margin-top: -280px;
+    font-size: 1.3em;
+}
+main #showcase #pStock{
+    position: absolute;
+    padding-left: 400px;
+    margin-top: -240px;
+    font-size: 1.3em;
+}
+main #showcase #pGrade{
+    position: absolute;
+    padding-left: 400px;
+    margin-top: -260px;
+    font-size: 1.3em;
+}
+
+
+main #showcase #pName{
+    position: absolute;
+    padding-left: 380px;
+    margin-top: 5px;   
+    font-size: 2em;
+}
+
+.cartTab{
+    width: 400px;
+    background-color: #ffffffb5;
+    position: absolute;
+    inset: 0 -400px 0 auto;
+    display: grid;
+    grid-template-rows: 1fr ;
+    transition: .5s;
+
+}
+#cartItem:nth-child(even){
+    background-color: #a10aec;
+}
+#cartList #cartItem{
+    display: grid;
+    grid-template-columns: 70px 150px 50px 1fr;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+#cartList{
+    overflow: auto;
+}
+#cartList::-webkit-scrollbar{
+    width: 0;
+}
+span{
+    display:inline-block;
+    width: 20px;
+    background-color: rgb(84, 249, 233);
+    color: #000;
+    border-radius: 30%;
+    cursor: pointer;
+}
+
+.cartTab #closebutt{
+    background-color: rgb(0, 0, 0); /* Green */
+    border-radius: 50%;
+    color: #fff;
+    padding: 3px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    position: absolute;
+    inset: 38px 2px auto auto;
+    font-weight: 900;
+}
+.cartTab #checkoutbutt{
+    background-color: rgb(179, 162, 255); /* Green */
+    border: 25%;
+    color: #000;
+    padding: 5px 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+}
+.cartTab h1{
+    font-weight: 300;
+}
+#cartimage img {
+    width: 100%;
+}
+.text{
+    font-weight:400;
+    display: inline;
+    margin: 10px;
+}
+#totalCarro{
+    position: absolute;
+    inset: 10px 100px 0 auto;
 }
