@@ -108,7 +108,29 @@ function sweety(str,check){
     }
 }
 
+function fin(){
+    const name = document.getElementById('namecheck');
+    const dir = document.getElementById('dirCheck');
+    const mail = document.getElementById('mail');
+    Swal.fire({
+        text: `Sr(a) ${name.value}\n Su pedido sera enviado a ${dir.value}\nSe le enviara un correo con la informacion de despacho (WIP)`  ,
+        icon: "success"
+      });
+    const clear = document.getElementById("checkpage");
+    clear.innerHTML = '';
+    carrito.forEach((pro) =>{
+        const aux = products.find(p => p.id === pro.id);
+        aux.cantidad =  parseInt(aux.cantidad) - parseInt(pro.quanti);
+    });
+    carrito = [];
+    initComps();
+    updateCart();
+    document.getElementById("totalCarro").innerHTML = "";
+    document.getElementById("insidecart").innerHTML = "0"
+}
+
 initComps();
 initShopcart();
+jasonload();
 
 

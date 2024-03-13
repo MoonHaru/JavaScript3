@@ -67,20 +67,42 @@ function updateCart(){
         },0)
         list.appendChild(div);
     });
+    jason();
 }
 
 function out(){
     const outbody = document.getElementById('content');
     outbody.innerHTML = "";
     const div = document.createElement('div');
-    div.className('checkout');
+    div.className = 'checkout';
     div.innerHTML=`
-    <div id = checktitle>
-        
-
-    </div>
+    <div id = checkpage>
+            <span id="title">Checkout</span>
+            <br>
+            <span>Nombre</span>
+            <input type="text" id="namecheck">
+            <br>
+            <span>Direccion</span>
+            <input type="text" id="dirCheck">
+            <br>
+            <span>Correo</span>
+            <input type="text" id="mail">
+            <br>
+            <span>Numero tarjeta</span>
+            <input type="text" id="tarjeta">
+            
+            <button id="buttCheck" onclick="fin()">Finalizar compra</button>
+        </div>
     `
+    outbody.appendChild(div);
 }
 
-
+function jason(){
+    const jasonfy = JSON.stringify(carrito);
+    localStorage.setItem("CarroBack", jasonfy);
+}
+function jasonload(){
+   carrito = JSON.parse(localStorage.getItem("CarroBack"));
+   updateCart();
+}
 

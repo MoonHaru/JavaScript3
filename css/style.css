@@ -64,10 +64,19 @@ main #checkpage{
     position: fixed;
     align-self: center;
     inset: 50% 50% 50% 50%;
+    width: 280px;
 }
 main #checkpage span{
     display: inline;
-    
+    font-weight: 600;
+    background-color: transparent;
+    font-size: 2em;
+}
+
+main #checkpage #title{
+    font-weight: 800;
+    position: fixed;
+    inset: 32% 50% 50% 50%;
 }
 main #content{
     display: grid;
