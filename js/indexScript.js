@@ -52,11 +52,11 @@ function display(id){
         <h5 class = "proDesc" id="pVolu">Volumen = ${sProduct.volumen}</h5>
         <h5 class = "proDesc" id="pPrice">Precio(IVA incluido) = ${sProduct.precio}</h5>
         <h5 class = "proDesc" id="pStock">Stock = ${sProduct.cantidad}</h5>
-        <button id="butt${sProduct.id}">Agregar al carrito</button> 
+        <button id="butt${sProduct.id}">Agregar al Carrito</button> 
         <input type="number" id="cantidadIng" placeholder="">
     `
     cont.appendChild(div);
-
+    const cant = document.getElementById("cantidadIng").value=1;
     const boton = document.getElementById(`butt${sProduct.id}`);
 
     boton.addEventListener('click', ()=>{
@@ -118,11 +118,11 @@ function fin(){
       });
     const clear = document.getElementById("checkpage");
     clear.innerHTML = '';
-    carrito.forEach((pro) =>{
+    shopCart.forEach((pro) =>{
         const aux = products.find(p => p.id === pro.id);
-        aux.cantidad =  parseInt(aux.cantidad) - parseInt(pro.quanti);
+        aux.cantidad =  parseInt(aux.cantidad) - parseInt(pro.quantityInside);
     });
-    carrito = [];
+    shopCart = [];
     initComps();
     updateCart();
     document.getElementById("totalCarro").innerHTML = "";
@@ -131,6 +131,6 @@ function fin(){
 
 initComps();
 initShopcart();
-jasonload();
+JSONload();
 
 

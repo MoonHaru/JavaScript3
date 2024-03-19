@@ -15,6 +15,9 @@ button{
 body{
     background: #f9b2cd;
 }
+body .logo{
+    display: none;
+}
 
 body.showCart .cartTab{
     inset: 0 0 0 auto;
@@ -34,7 +37,10 @@ header{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px;
+    padding: 20px;
+}
+header .h11{
+    display: flex;
 }
 header .icon-cart{
     position: relative;
@@ -51,9 +57,6 @@ header .icon-cart span{
     padding-left: 25%;
     position: absolute;
     top: 50%;
-}
-header .h11 {
-    display: flex;
 }
 main{
   font-family: "Montserrat Alternates", sans-serif;
