@@ -1,6 +1,6 @@
 let shopCart = [];
 
-function JSON(){
+function JSONStore(){
     const JSONFY = JSON.stringify(shopCart);
     localStorage.setItem("CarroBack", JSONFY);
 }
@@ -33,7 +33,7 @@ function updateCart(){
         },0)
         list.appendChild(div);
     });
-    JSON();
+    JSONStore();
 }
 
 function CantiCart(idProducto,cantidadIngresada,costoProducto){

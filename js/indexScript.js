@@ -1,15 +1,16 @@
 //Arreglo de datos principal
+let productsaux = [];
 let products = [
-    { id:1 ,nombre: 'Whisky Escocés', marca: 'Johnnie Walker', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 15, imagen: "Img/JWWH.png" },
-    { id:2 ,nombre: 'Vodka', marca: 'Absolut', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 16950, cantidad: 20, imagen:"Img/VAO.png" },
-    { id:3 ,nombre: 'Vino Tinto', marca: 'Concha y Toro', categoria: 'Vino', volumen: '750 ml', gradoAlcoholico: 13, precio: 7500, cantidad: 30, imagen:"Img/VCYTR.png" },
-    { id:4 ,nombre: 'Cerveza IPA', marca: 'Stone Brewing', categoria: 'Cerveza', volumen: '355 ml', gradoAlcoholico: 6.9, precio: 5000, cantidad: 50, imagen:"Img/SBCI.png" },
-    { id:5 ,nombre: 'Ron', marca: 'Havana Club', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 12000, cantidad: 25, imagen: "Img/RHC.png"},
-    { id:6 ,nombre: 'Ginebra', marca: 'Bombay Sapphire', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 47, precio: 17000, cantidad: 18, imagen:"Img/GBS.png" },
-    { id:7 ,nombre: 'Tequila', marca: 'Patrón', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 22, imagen:"Img/TQS.png" },
-    { id:8 ,nombre: 'Champán', marca: 'Moët & Chandon', categoria: 'Vino Espumoso', volumen: '750 ml', gradoAlcoholico: 12, precio: 20000, cantidad: 12, imagen:"Img/MCC.png" },
-    { id:9 ,nombre: 'Sidra', marca: 'Strongbow', categoria: 'Cerveza de Sidra', volumen: '500 ml', gradoAlcoholico: 5, precio: 5000, cantidad: 40, imagen:"Img/SSBA.png" },
-    { id:10 ,nombre: 'Licor de Café', marca: 'Kahlúa', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 20, precio: 18000, cantidad: 15, imagen:"Img/LCK.png" }
+  { id:1 ,nombre: 'Whisky Escocés', marca: 'Johnnie Walker', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 15, imagen: "Img/JWWH.png" },
+  { id:2 ,nombre: 'Vodka', marca: 'Absolut', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 16950, cantidad: 20, imagen:"Img/VAO.png" },
+  { id:3 ,nombre: 'Vino Tinto', marca: 'Concha y Toro', categoria: 'Vino', volumen: '750 ml', gradoAlcoholico: 13, precio: 7500, cantidad: 30, imagen:"Img/VCYTR.png" },
+  { id:4 ,nombre: 'Cerveza IPA', marca: 'Stone Brewing', categoria: 'Cerveza', volumen: '355 ml', gradoAlcoholico: 6.9, precio: 5000, cantidad: 50, imagen:"Img/SBCI.png" },
+  { id:5 ,nombre: 'Ron', marca: 'Havana Club', categoria: 'Licor', volumen: '700 ml', gradoAlcoholico: 40, precio: 12000, cantidad: 25, imagen: "Img/RHC.png"},
+  { id:6 ,nombre: 'Ginebra', marca: 'Bombay Sapphire', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 47, precio: 17000, cantidad: 18, imagen:"Img/GBS.png" },
+  { id:7 ,nombre: 'Tequila', marca: 'Patrón', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 40, precio: 25000, cantidad: 22, imagen:"Img/TQS.png" },
+  { id:8 ,nombre: 'Champán', marca: 'Moët & Chandon', categoria: 'Vino Espumoso', volumen: '750 ml', gradoAlcoholico: 12, precio: 20000, cantidad: 12, imagen:"Img/MCC.png" },
+  { id:9 ,nombre: 'Sidra', marca: 'Strongbow', categoria: 'Cerveza de Sidra', volumen: '500 ml', gradoAlcoholico: 5, precio: 5000, cantidad: 40, imagen:"Img/SSBA.png" },
+  { id:10 ,nombre: 'Licor de Café', marca: 'Kahlúa', categoria: 'Licor', volumen: '750 ml', gradoAlcoholico: 20, precio: 18000, cantidad: 15, imagen:"Img/LCK.png" }
 ];
 
 
@@ -25,7 +26,6 @@ function initComps() {
         <img src="${sProduct.imagen}" onclick="display(${sProduct.id})">
         <h5>Volumen = ${sProduct.volumen}</h5>
         <h5>Precio(IVA incluido) = ${sProduct.precio}</h5>
-        <h5>Stock = ${sProduct.cantidad}</h5>
     `
     cont.appendChild(div);
   });
@@ -53,7 +53,7 @@ function display(id){
         <h5 class = "proDesc" id="pPrice">Precio(IVA incluido) = ${sProduct.precio}</h5>
         <h5 class = "proDesc" id="pStock">Stock = ${sProduct.cantidad}</h5>
         <button id="butt${sProduct.id}">Agregar al Carrito</button> 
-        <input type="number" id="cantidadIng" placeholder="">
+        <input type="number" min="0" id="cantidadIng" placeholder="">
     `
     cont.appendChild(div);
     const cant = document.getElementById("cantidadIng").value=1;
@@ -128,9 +128,14 @@ function fin(){
     document.getElementById("totalCarro").innerHTML = "";
     document.getElementById("insidecart").innerHTML = "0"
 }
-
-initComps();
-initShopcart();
-JSONload();
-
+function cartload(){
+  products = [];
+  fetch("https://moonharu.github.io/JustApi/Test.JSON")
+  .then((response) => response.json())
+  .then((data) => data.forEach(inside => productsaux.push(inside)))
+  .then(initComps(), initShopcart(), JSONload());
+  console.log(products);
+}
+cartload();
+console.log(productsaux);
 
