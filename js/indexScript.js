@@ -16,7 +16,7 @@ let products = [
 
 function initComps() {
   const cont = document.getElementById("content");
-  cont.innerHTML = "";
+  cont.innerHTML = '<div id="Instruction" class="">Clickea sobre el producto</div>';
   products.forEach((sProduct) => {
     const div = document.createElement('div');
     div.className = 'producto';
@@ -71,7 +71,8 @@ function display(id){
             sweety("Ingrese una cantidad valida",false);
         }
 
-    })
+    });
+  
 
 
 }
@@ -127,15 +128,34 @@ function fin(){
     updateCart();
     document.getElementById("totalCarro").innerHTML = "";
     document.getElementById("insidecart").innerHTML = "0"
+
 }
-function cartload(){
+function cartload(){//codigo arreglado por chat gpt
   products = [];
+  fetch("https://moonharu.github.io/JustApi/Test.JSON")
+  .then((response) => response.json())
+  .then((data) => {
+    data.forEach(inside => products.push(inside));
+    console.log(productsaux);
+    initComps();
+    initShopcart();
+    JSONload();
+  })
+  .catch(error => console.error('Error fetching data:', error)); // Manejo de errores
+}
+/* codgo hecho por mi
+function cartload(){
   fetch("https://moonharu.github.io/JustApi/Test.JSON")
   .then((response) => response.json())
   .then((data) => data.forEach(inside => productsaux.push(inside)))
   .then(initComps(), initShopcart(), JSONload());
   console.log(products);
+  
 }
+*/
 cartload();
+//initComps();
+//initShopcart();
+//JSONload();
 console.log(productsaux);
 

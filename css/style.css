@@ -21,6 +21,7 @@ body.showCart .cartTab{
 }
 
 
+
 body.showCart main{
     transition: transform .5s;
 }
@@ -87,7 +88,8 @@ main #content{
 }
 main #Instruction{
     position: absolute;
-    inset: 17% 0 0 40.25%;
+    margin-top: -3%;
+    margin-left: 33.5%;
     font-size: 1.3em;
 }
 main section .producto{
